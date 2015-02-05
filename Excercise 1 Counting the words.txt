@@ -1,0 +1,14 @@
+Option #1: as a block
+my_string = "I know that I am intelligent because I know that I know nothing"
+my_array = my_string.split(" ")
+uniq_array = my_array.uniq
+uniq_array.select {|x| puts "Occurances of: #{x.ljust(20)} - #{my_array.count(x)} times"}
+
+Option #2: as a function invocation
+def findcount(my_string)
+	my_array = my_string.split(" ")
+	uniq_array = my_array.uniq
+	uniq_array.select {|x| puts "Occurances of: #{x.ljust(20)} - #{my_array.count(x)} times"}
+end
+
+puts findcount("I know that I am intelligent because I know that I know nothing")

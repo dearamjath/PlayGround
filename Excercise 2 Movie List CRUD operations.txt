@@ -1,0 +1,65 @@
+movies = {}
+
+loop do
+    
+    puts "\n\nEnter What do you want to do next"
+    puts "1. Create a movie"
+    puts "2. List Movies and ratings"
+    puts "3. Update rating for any movie"
+    puts "4. Delete any movie"
+    puts "5. Quit\n\n\n"
+    
+    option_string = gets.chomp
+    option = option_string.to_i
+    
+    break if option == 5
+    
+    case option
+    when 1
+        puts "Please Enter Movie Name to be added"
+        movie_name = gets.chomp
+        
+        if movies.has_key?(movie_name) then
+            puts "\n\n Warning: This movie already present. Please select appropriate option"
+        else
+            puts "Please Enter rating for movie"
+            movie_rating = gets.chomp    
+            movies[movie_name] = movie_rating
+            puts "Movie Added. Number of movies in DB: #{movies.length}"
+        end
+        
+    when 2
+        puts '========================================================'
+        movies.each do |key, value|
+            puts "#{key.ljust(20)} => #{value}"
+        end
+        puts '========================================================'
+        
+    when 3
+        puts "Please Enter Movie Name to be updated"
+        movie_name = gets.chomp
+        
+        if movies.has_key?(movie_name) then
+            puts "Please Enter rating for movie"
+            movie_rating = gets.chomp
+            movies[movie_name] = movie_rating
+            puts "Movie Updated"
+        else
+            puts "\n\n Warning: Movie not found. Please select appropriate option"
+        end
+        
+    when 4
+        puts "Please Enter Movie Name to be deleted"
+        movie_name = gets.chomp
+        
+        if movies.has_key?(movie_name) then
+            movies.delete(movie_name)
+            puts "Movie Deleted. Number of movies in DB: #{movies.length}"
+        else
+            puts "\n\n Warning: Movie not found. Please select appropriate option"
+        end
+    else
+        puts "Invalid option |#{option_string}| -- I have no idea what to do with that."
+    end
+    
+end 
